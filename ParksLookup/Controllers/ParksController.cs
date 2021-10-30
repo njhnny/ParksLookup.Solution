@@ -22,19 +22,14 @@ namespace ParksLookup.Controllers
 
     // GET: api/Parks
     [HttpGet]
-    public async Task<ActionResult<IEnumerable<Park>>> Get(string species, string gender, string name)
+    public async Task<ActionResult<IEnumerable<Park>>> Get(string location, string name)
     {
       var query = _db.Parks.AsQueryable();
 
-      if (species != null)
+      if (location != null)
       {
-        query = query.Where(entry => entry.Species == species);
-      }
-
-      if (gender != null)
-      {
-        query = query.Where(entry => entry.Gender == gender);
-      }    
+        query = query.Where(entry => entry.Location == location);
+      }   
 
       if (name != null)
       {
