@@ -11,20 +11,20 @@ namespace ParksLookup.Controllers
 {
   [Route("api/[controller]")]
   [ApiController]
-  public class AnimalsController : ControllerBase
+  public class ParksController : ControllerBase
   {
     private readonly ParksLookupContext _db;
 
-    public AnimalsController(ParksLookupContext db)
+    public ParksController(ParksLookupContext db)
     {
       _db = db;
     }
 
-    // GET: api/Animals
+    // GET: api/Parks
     [HttpGet]
-    public async Task<ActionResult<IEnumerable<Animal>>> Get(string species, string gender, string name)
+    public async Task<ActionResult<IEnumerable<Park>>> Get(string species, string gender, string name)
     {
-      var query = _db.Animals.AsQueryable();
+      var query = _db.Parks.AsQueryable();
 
       if (species != null)
       {
@@ -44,31 +44,31 @@ namespace ParksLookup.Controllers
       return await query.ToListAsync();
     }
 
-    // GET: api/Animals/5
+    // GET: api/Parks/5
     [HttpGet("{id}")]
-    public async Task<ActionResult<Animal>> GetAnimal(int id)
+    public async Task<ActionResult<Park>> GetPark(int id)
     {
-        var animal = await _db.Animals.FindAsync(id);
+        var park = await _db.Parks.FindAsync(id);
 
-        if (animal == null)
+        if (park == null)
         {
             return NotFound();
         }
 
-        return animal;
+        return park;
     }
 
-    // PUT: api/Animals/5
+    // PUT: api/Parks/5
     // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
     [HttpPut("{id}")]
-    public async Task<IActionResult> Put(int id, Animal animal)
+    public async Task<IActionResult> Put(int id, Park park)
     {
-      if (id != animal.AnimalId)
+      if (id != park.ParkId)
       {
         return BadRequest();
       }
 
-      _db.Entry(animal).State = EntityState.Modified;
+      _db.Entry(park).State = EntityState.Modified;
 
       try
       {
@@ -76,7 +76,7 @@ namespace ParksLookup.Controllers
       }
       catch (DbUpdateConcurrencyException)
       {
-        if (!AnimalExists(id))
+        if (!ParkExists(id))
         {
           return NotFound();
         }
@@ -89,35 +89,35 @@ namespace ParksLookup.Controllers
       return NoContent();
     }
 
-    // POST: api/Animals
+    // POST: api/Parks
     [HttpPost]
-    public async Task<ActionResult<Animal>> Post(Animal animal)
+    public async Task<ActionResult<Park>> Post(Park park)
     {
-      _db.Animals.Add(animal);
+      _db.Parks.Add(park);
       await _db.SaveChangesAsync();
 
-      return CreatedAtAction(nameof(GetAnimal), new { id = animal.AnimalId }, animal);
+      return CreatedAtAction(nameof(GetPark), new { id = park.ParkId }, park);
     }
 
-    // DELETE: api/Animals/5
+    // DELETE: api/Parks/5
     [HttpDelete("{id}")]
-    public async Task<IActionResult> DeleteAnimal(int id)
+    public async Task<IActionResult> DeletePark(int id)
     {
-      var animal = await _db.Animals.FindAsync(id);
-      if (animal == null)
+      var park = await _db.Parks.FindAsync(id);
+      if (park == null)
       {
         return NotFound();
       }
 
-      _db.Animals.Remove(animal);
+      _db.Parks.Remove(park);
       await _db.SaveChangesAsync();
 
       return NoContent();
     }
 
-    private bool AnimalExists(int id)
+    private bool ParkExists(int id)
     {
-      return _db.Animals.Any(e => e.AnimalId == id);
+      return _db.Parks.Any(e => e.ParkId == id);
     }
   }
 }
