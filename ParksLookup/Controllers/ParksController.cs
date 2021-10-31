@@ -1,14 +1,16 @@
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Mvc.Versioning;
 using ParksLookup.Models;
+using System;
 
 namespace ParksLookup.Controllers
 {
+  [Produces("application/json")]
   [Route("api/[controller]")]
   [ApiController]
   public class ParksController : ControllerBase

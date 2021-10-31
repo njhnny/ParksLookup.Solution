@@ -1,3 +1,5 @@
+using System;
+
 namespace ParksLookup.Models
 {
   public class Park
