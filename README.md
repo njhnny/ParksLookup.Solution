@@ -26,6 +26,8 @@ This is an API for looking up state and national parks.
 * Run the command dotnet restore to install all necessary packages
 * Run the command dotnet ef database update to create the database from the Migrations folder
 * In the terminal, run the commands dotnet build, then dotnet run
+## Swagger
+The Swagger interface will be visible at localhost:5001 when the application is run. This will enable you to interact with the get, post, put, and delete endpoints.
 ## Known Bugs
 None
 ## License
