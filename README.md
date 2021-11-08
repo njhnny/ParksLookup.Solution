@@ -26,20 +26,27 @@ This is an API for looking up state and national parks.
 * Run the command dotnet restore to install all necessary packages
 * Run the command dotnet ef database update to create the database from the Migrations folder
 * In the terminal, run the commands dotnet build, then dotnet run
-## Http Requests
+### Http Requests
 GET /api/parks
 POST /api/parks
 GET /api/parks{id}
 PUT /api/parks{id}
 DELETE /api/parks{id}
-## Example JSON Response
+### Example JSON Response
 {
     "parkId": 1,
     "name": "Forest Park",
     "location": "Portland"
   }
-## Swagger
+### Parameters
+parkId: int
+name: string
+location: string
+### Swagger
 The Swagger interface will be visible at localhost:5001 when the application is run. This will enable you to interact with the get, post, put, and delete endpoints.
+
+Swagger can be used to test queries. Expand the query you would like to test and then click on the Try it out button. Enter your query if applicable and then click the Execute button.
+
 ## Known Bugs
 None
 ## License
